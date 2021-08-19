@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Mensagem implements Serializable {
 	private String nome;
-	private String mensagem;
+	private String texto;
 	
-	public Mensagem(String nome, String mensagem) {
+	public Mensagem(String nome, String texto) {
 		super();
 		this.nome = nome;
-		this.mensagem = mensagem;
+		this.texto = texto;
 	}
 
 	public String getNome() {
@@ -20,17 +20,17 @@ public class Mensagem implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getMensagem() {
-		return mensagem;
+	public String getTexto() {
+		return texto;
 	}
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
 	@Override
 	public String toString() {
-		return "Mensagem [nome=" + nome + ", mensagem=" + mensagem + "]";
+		return "Mensagem [nome=" + nome + ", texto=" + texto + "]";
 	}
 	
 }

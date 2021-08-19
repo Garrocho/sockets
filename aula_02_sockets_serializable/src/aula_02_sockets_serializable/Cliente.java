@@ -32,9 +32,9 @@ public class Cliente {
 	
 	public static void main(String[] args) throws Exception {
 		Cliente cliente = new Cliente("127.0.0.1", 15500);
-		cliente.enviar_mensagem(new Mensagem("Fulano", "Opa, joia?"));
+		cliente.enviar_mensagem(new Mensagem("Cliente", "Opa, joia?"));
 		Mensagem resposta = (Mensagem)cliente.receber_mensagem();
-		System.out.println("Mensagem de " + resposta.getNome() + ": " + resposta.getMensagem());
+		System.out.println(resposta.toString());
 		cliente.finalizar();
 	}
 }
