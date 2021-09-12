@@ -1,6 +1,7 @@
 package aula_02_sockets_serializable;
 
 import java.net.Socket;
+import java.util.Scanner;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -31,10 +32,19 @@ public class Cliente {
 	}
 	
 	public static void main(String[] args) throws Exception {
+		Scanner ler = new Scanner(System.in);
 		Cliente cliente = new Cliente("127.0.0.1", 15500);
-		cliente.enviar_mensagem(new Mensagem("Cliente", "Opa, joia?"));
+		Mensagem mensagem = new Mensagem();
+		
+		System.out.print("Seu Nome: ");
+		mensagem.setNome(ler.next());
+		
+		System.out.print("Sua Mesagem: ");
+		mensagem.setTexto(ler.next());
+		
+		cliente.enviar_mensagem(mensagem);
 		Mensagem resposta = (Mensagem)cliente.receber_mensagem();
-		System.out.println(resposta.toString());
+		System.out.println(resposta.getNome() + ": " + resposta.getTexto());
 		cliente.finalizar();
 	}
 }
