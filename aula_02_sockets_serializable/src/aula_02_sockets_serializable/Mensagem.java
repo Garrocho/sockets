@@ -6,6 +6,10 @@ public class Mensagem implements Serializable {
 	private String nome;
 	private String texto;
 	
+	public Mensagem() {
+		super();
+	}
+	
 	public Mensagem(String nome, String texto) {
 		super();
 		this.nome = nome;
