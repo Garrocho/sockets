@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class TrataCliente implements Runnable {
+public class TrataCliente {
 		
 		private Socket soquete_cliente;
 		private ObjectOutputStream saida;
@@ -30,15 +30,14 @@ public class TrataCliente implements Runnable {
 			this.soquete_cliente.close();
 		}
 		
-		@Override
-		public void run() {
-			try {
-				Mensagem mensagem = (Mensagem)receber_mensagem();
-				System.out.println(mensagem.toString());
-				enviar_mensagem(new Mensagem("Servidor", "Estou bem, e vc?"));
+		public void iniciar() throws Exception {
+				Mensagem mensagem_do_cliente = (Mensagem)receber_mensagem();
+				Mensagem resposta_ao_cliente = new Mensagem();
+				
+				resposta_ao_cliente.setNome("Servidor");
+				resposta_ao_cliente.setTexto("Ola " + mensagem_do_cliente.getNome() + ", no que posso te ajudar?");
+				
+				enviar_mensagem(resposta_ao_cliente);
 				finalizar();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 	}
