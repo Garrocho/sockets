@@ -1,30 +1,41 @@
 package aula_02_sockets_serializable;
 
-import java.net.Socket;
-import java.util.Scanner;
-import java.net.ServerSocket;
-import java.io.IOException;
+import java.io.Serializable;
 
-public class Servidor {
+public class Mensagem implements Serializable {
+	private String nome;
+	private String texto;
 	
-	private ServerSocket soquete_servidor;
-
-	public Servidor(int porta) throws Exception {
+	public Mensagem() {
 		super();
-		this.soquete_servidor = new ServerSocket(porta);
 	}
 	
-	public void finalizar() throws IOException {
-		this.soquete_servidor.close();
+	public Mensagem(String nome, String texto) {
+		super();
+		this.nome = nome;
+		this.texto = texto;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	@Override
+	public String toString() {
+		return "Mensagem [nome=" + nome + ", texto=" + texto + "]";
 	}
 	
-	public static void main(String[] args) throws Exception {
-		Scanner ler = new Scanner(System.in);
-		Servidor servidor = new Servidor(15500);
-		Socket soquete_cliente = null;
-		soquete_cliente = servidor.soquete_servidor.accept();
-		TrataCliente trataCliente = new TrataCliente(soquete_cliente);
-		trataCliente.iniciar();
-		servidor.finalizar();
-	}
 }
+
